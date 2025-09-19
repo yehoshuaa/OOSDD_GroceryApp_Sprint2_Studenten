@@ -34,18 +34,18 @@ namespace Grocery.App.ViewModels
 
         private void GetAvailableProducts()
         {
-            // leeg de rechterlijst
+            //leeg de rechterlijst
             AvailableProducts.Clear();
 
-            // haal alle producten op
+            //haal alle producten op
             var allProducts = _productService.GetAll();
 
-            // pak de ProductId's die al op de boodschappenlijst staan
+            //pak de ProductId's die al op de boodschappenlijst staan
             var productIdsOnList = MyGroceryListItems
                 .Select(i => i.ProductId)
                 .ToHashSet();
 
-            // filter: voorraad > 0 én nog niet op de lijst
+            //filter: voorraad > 0 én nog niet op de lijst
             foreach (var p in allProducts)
             {
                 if (p.Stock > 0 && !productIdsOnList.Contains(p.Id))
